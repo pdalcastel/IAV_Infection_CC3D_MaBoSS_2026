@@ -1,0 +1,27 @@
+this is a collection of important points that had to be changed from the previous version, that includes STATp to the new version that ignores STATp and connects the hill function of IFN concentration directly to the ISGs so that the sensing mechanism is more smooth and controllable. STATp activation being too fast and binary does not lead to the intended cell behavior at the same time that it does not make sense biologically according to discussions between me (Pedro CDC) and the APL team. 
+
+>STAT_del parameter deleted
+>STATp_activation par changed to IFN_hill_fuction
+>STATp_activation_rate par removed
+>STATp.istate initial condition removed
+>node STATp removed
+>node IFITM logic rule set to $IFNc > 0 && !(NS1)
+>node IFITM rate up set to $IFITM_upregulation*$IFN_hill_fuction when true
+>node IFITM rate down set to $IFITM_downregulation when true
+>node OAS logic rule set to $IFNc > 0 && !(NS1)
+>node OAS rate up set to $mRNA_upregulation*$IFN_hill_fuction when true
+>node OAS rate down set to $mRNA_degradation when true
+>node PKR logic rule set to $IFNc > 0 && !(NS1)
+>node PKR rate up set to $mRNA_upregulation*$IFN_hill_fuction when true
+>node PKR rate down set to $mRNA_degradation when true
+>node IRF7 logic rule set to $IFNc > 0 && !(NS1)
+>node IRF7 rate up set to $mRNA_upregulation*$IFN_hill_fuction when true
+>node IRF7 rate down set to $mRNA_degradation when true
+>removed STATp field
+>removed STATp output
+>changed maboss variable call from python to cell.maboss.VModel.network.symbol_table["IFN_hill_fuction"] = IFNc**IFNn / (IFNc**IFNn+IFNhm**IFNn)
+>removed STATp counter
+>changed maboss variable call from python to cell.maboss.VModel.network.symbol_table["IFN_hill_fuction"] = IFNc**IFNn / (IFNc**IFNn+IFNhm**IFNn) in another line
+>removed STATp cell counter in another line
+>removed STATp values file output
+>removed STAT knockout checkers
